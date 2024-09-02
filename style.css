@@ -42,6 +42,8 @@ body {
 
 /* #################### navbar styling ############################*/
 
+/* #################### navbar styling ############################*/
+
 /* For desktop mode */
 .navbar input[type='checkbox'],
 .navbar .hamburger-lines {
@@ -56,6 +58,13 @@ body {
     color: black;
     opacity: 0.85;
     z-index: 999;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease, backdrop-filter 0.5s ease; /* Transições suaves */
+}
+
+.navbar.scrolled {
+    background-color: #16a085; /* Cor de fundo alterada ao rolar */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+    backdrop-filter: blur(5px); /* Efeito de desfoque */
 }
 
 .navbar-container {
@@ -86,12 +95,17 @@ body {
     color: #444;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease-in-out;
+    padding: 0.5rem 1rem; /* Espaçamento interno para o efeito de fundo */
+    border-radius: 0.5rem; /* Bordas arredondadas para o fundo */
+    transition: color 0.3s ease-in-out, transform 0.3s ease, background-color 0.3s ease; /* Transição para cor e fundo */
 }
 
 .navbar a:hover {
-    color: #117964;
+    color: #fff; /* Cor do texto ao passar o mouse */
+    background-color: #117964; /* Cor de fundo ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de subida ao passar o mouse */
 }
+
 
 /* #########################  Showcase styling  ######################*/
 .showcase-area {
