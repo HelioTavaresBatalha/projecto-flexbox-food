@@ -45,12 +45,7 @@ body {
 
 /* #################### navbar styling ############################*/
 
-/* For desktop mode */
-.navbar input[type='checkbox'],
-.navbar .hamburger-lines {
-    display: none;
-}
-
+/* Geral */
 .navbar {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -60,14 +55,12 @@ body {
     opacity: 0.85;
     z-index: 999;
     transition: background-color 0.5s ease, box-shadow 0.5s ease, backdrop-filter 0.5s ease;
-
 }
 
 .navbar.scrolled {
     background-color: #16a085;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
-
 }
 
 .navbar-container {
@@ -75,37 +68,39 @@ body {
     justify-content: space-between;
     height: 6.4rem;
     align-items: center;
+    padding: 0 2rem;
 }
 
-.menu-items {
-    order: 2;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.menu-items li {
-    list-style-type: none;
-    margin-left: 1.5rem;
-    font-size: 1.8rem;
-}
-
+/* Logo à Esquerda */
 .logo {
-    order: 1;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #444;
+    flex-shrink: 0;
 }
 
 .logo-letter {
     color: #444;
-    /* Cor inicial da letra "B" */
     transition: color 0.5s ease;
-    /* Transição suave da cor */
 }
 
 .navbar.scrolled .logo-letter {
     color: #fff;
 }
 
+/* Menu Links Alinhado à Direita */
+.menu-items {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    margin-left: auto;
+}
+
+.menu-items li {
+    margin-left: 1.5rem;
+    font-size: 1.6rem;
+}
 
 .navbar a {
     color: #444;
@@ -120,11 +115,162 @@ body {
     color: #fff;
     background-color: #117964;
     transform: translateY(-3px);
-    /* Efeito de subida ao passar o mouse */
 }
 
+/* #################### Mobile Menu ############################*/
 
-/* #########################  Showcase styling  ######################*/
+/* Ocultar menu no mobile inicialmente */
+.menu-items {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 2rem 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.menu-items li {
+    margin: 1.5rem 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo do menu "hamburger" */
+.hamburger-lines {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    height: 2.4rem;
+    width: 3rem;
+    z-index: 1001;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.hamburger-lines .line {
+    display: block;
+    height: 0.3rem;
+    width: 100%;
+    background: #444;
+    border-radius: 0.3rem;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.line1 {
+    top: 0;
+}
+
+.line2 {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.line3 {
+    top: 100%;
+    transform: translateY(-100%);
+}
+
+/* Animação para quando o menu está ativo */
+#menu-toggle:checked + .hamburger-lines .line1 {
+    transform: rotate(45deg);
+    top: 50%;
+    background: #fff;
+}
+
+#menu-toggle:checked + .hamburger-lines .line2 {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+    top: 50%;
+    background: #fff;
+}
+
+/* Mostrar menu no mobile quando o checkbox está marcado */
+#menu-toggle:checked ~ .menu-items {
+    display: flex;
+}
+
+/* Ocultar o checkbox */
+#menu-toggle {
+    display: none;
+}
+
+/* ########## Media Queries para Responsividade ########## */
+
+/* Estilo para telas maiores que 768px */
+@media screen and (min-width: 768px) {
+    /* Menu padrão para desktop */
+    .menu-items {
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        margin-left: auto;
+    }
+
+    .menu-items li {
+        margin: 0 1.5rem;
+    }
+
+    .hamburger-lines {
+        display: none;
+    }
+}
+
+/* Estilo para telas maiores que 480px e menores que 768px */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    .navbar-container {
+        padding: 0 1rem;
+    }
+
+    .menu-items li {
+        margin-left: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .hamburger-lines {
+        height: 2rem;
+        width: 2.5rem;
+        padding: 0.3rem;
+    }
+
+    .hamburger-lines .line {
+        height: 0.2rem;
+    }
+}
+
+/* Estilo para telas menores que 480px */
+@media screen and (max-width: 479px) {
+    .navbar-container {
+        padding: 0 1rem;
+    }
+
+    .menu-items li {
+        margin-left: 0.5rem;
+        font-size: 1.4rem;
+    }
+
+    .hamburger-lines {
+        height: 2rem;
+        width: 2.5rem;
+        padding: 0.3rem;
+    }
+
+    .hamburger-lines .line {
+        height: 0.2rem;
+    }
+}
+
 /* ######################### Showcase Styling ######################### */
 
 .showcase-area {
@@ -387,6 +533,7 @@ body {
 
     }
 }
+
 /* ###################### Food Menu Styling ############################### */
 
 .food-menu-heading {
@@ -403,7 +550,8 @@ body {
     justify-content: center;
     gap: 3rem;
     padding: 5rem 0;
-    position: relative; /* Necessário para o efeito do modal */
+    position: relative;
+    /* Necessário para o efeito do modal */
 }
 
 .food-menu-container img {
@@ -413,13 +561,17 @@ body {
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
-    cursor: pointer; /* Mostra que a imagem é clicável */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Transições suaves */
+    cursor: pointer;
+    /* Mostra que a imagem é clicável */
 }
 
 .food-menu-container img:hover {
-    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+    transform: scale(1.1);
+    /* Efeito de zoom ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra para destacar a imagem */
 }
 
 .food-menu-item {
@@ -454,13 +606,15 @@ body {
 /* ###################### Modal Styling ############################### */
 
 .modal {
-    display: none; /* Inicialmente escondido */
+    display: none;
+    /* Inicialmente escondido */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+    background: rgba(0, 0, 0, 0.8);
+    /* Fundo escuro com transparência */
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -482,5 +636,6 @@ body {
 }
 
 .modal-show {
-    display: flex; /* Mostra o modal */
+    display: flex;
+    /* Mostra o modal */
 }
