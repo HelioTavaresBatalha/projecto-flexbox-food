@@ -29,7 +29,12 @@
                 <li><a href="#showcase">Testimonial</a></li>
                 <li><a href="#Contact">Contact</a></li>
             </ul>
-            <h1 class="logo">HB</h1>
+
+            <div class="logo">H
+                <span class="logo-letter">B</span>
+            </div>
+
+
         </div>
     </nav>
 
@@ -99,6 +104,7 @@
         </div>
     </section>
 
+   
 
 
     <section id="food-menu">
@@ -191,16 +197,56 @@
 
 
     </section>
-<script>
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) { // Ajuste o valor conforme necessário
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-</script>
+     <!-- Modal Structure -->
+     <div id="modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img id="modal-img" src="" alt="Food Image">
+    </div>
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Ajuste o valor conforme necessário
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Ajuste o valor conforme necessário
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('.food-menu-container img');
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalClose = document.querySelector('.modal-close');
+
+            images.forEach(img => {
+                img.addEventListener('click', function () {
+                    modalImg.src = this.src; // Define a imagem do modal como a imagem clicada
+                    modal.classList.add('modal-show'); // Mostra o modal
+                });
+            });
+
+            modalClose.addEventListener('click', function () {
+                modal.classList.remove('modal-show'); // Oculta o modal
+            });
+
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('modal-show'); // Oculta o modal se clicar fora da imagem
+                }
+            });
+        });
+
+
+
+    </script>
 
 
 </body>
